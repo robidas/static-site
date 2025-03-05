@@ -13,6 +13,7 @@ export async function* loadImages() {
             // await new Promise(resolve => setTimeout(resolve, 100));
 
             const li = document.createElement("li");
+            li.classList.add("photo-item"); // Add this line
             li.innerHTML = `
                 <div class="photo-container">
                     <div class="photo-content">
