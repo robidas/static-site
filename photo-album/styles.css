@@ -3,9 +3,15 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
-    border: 1px solid #ccc; /* Added light border */
+}
+
+.photo-content {
+    border: 1px solid #ccc; 
     padding: 10px;
     border-radius: 8px; /* Optional: Slightly rounded corners */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .photo-container img {

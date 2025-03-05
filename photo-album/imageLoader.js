@@ -15,9 +15,11 @@ export async function* loadImages() {
             const li = document.createElement("li");
             li.innerHTML = `
                 <div class="photo-container">
-                    <p class="photo-title">${image.title}</p>
-                    <img src="${image.filePath}" alt="${image.title}">
-                    <p class="photo-description">${image.description}</p>
+                    <div class="photo-content">
+                        <p class="photo-title">${image.title}</p>
+                        <img src="${image.filePath}" alt="${image.title}">
+                        <p class="photo-description">${image.description}</p>
+                    </div>
                 </div>
             `;
 
