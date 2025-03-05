@@ -9,17 +9,19 @@ export async function* loadImages() {
         const images = await response.json();
 
         for (const image of images) {
-            // await new Promise(resolve => setTimeout(resolve, 5)); // Simulate network delay for testing
+            // Commented-out delay for now, but can be re-enabled if needed
+            // await new Promise(resolve => setTimeout(resolve, 100));
 
             const li = document.createElement("li");
             li.innerHTML = `
                 <div class="photo-container">
-                    <img src="${image.filePath}" alt="${image.title}">
                     <p class="photo-title">${image.title}</p>
+                    <img src="${image.filePath}" alt="${image.title}">
                     <p class="photo-description">${image.description}</p>
                 </div>
             `;
-            yield li;
+
+            yield li; // Yielding the actual li element, so script.js can use appendChild()
         }
     } catch (error) {
         console.error("Error loading images:", error);
