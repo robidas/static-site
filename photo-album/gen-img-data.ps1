@@ -12,6 +12,7 @@
 # - Each image should have a sort order integer for future sorting purposes.
 # - New images should initially have a sort order of -1 and later be assigned a sequential number.
 # - The script should exit with an error message if no .jpg files are found.
+# - The script should include `userId` and `roleNames` fields for future use in an admin interface.
 #
 # Assumptions:
 # - The script runs in the correct directory containing the .jpg images.
@@ -55,7 +56,6 @@ if ($null -eq $maxSortNumber) {
     $maxSortNumber = 0
 }
 
-# Process each image file
 foreach ($image in $imageFiles) {
     $filePath = $image.Name
     
@@ -69,6 +69,8 @@ foreach ($image in $imageFiles) {
             title = "Untitled"
             description = "No description"
             sortOrder = -1  # Flag as new entry
+            userId = $null  # Placeholder for user identification
+            roleNames = @()  # Placeholder for roles allowed to view the image
         }
     }
 }
