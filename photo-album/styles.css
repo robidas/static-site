@@ -1,0 +1,23 @@
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.photo-container img {
+    max-width: 300px; /* Adjust size as needed */
+    height: auto;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
+.photo-title {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.photo-description {
+    font-size: 0.9em;
+    color: #555;
+}
