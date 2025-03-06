@@ -1,5 +1,8 @@
 import { loadImages } from './imageLoader.js';
+import { isEditable, setEditable } from './config.js';
 
+// For future use: setting the editable flag based on some condition
+// setEditable(true);
 (async () => {
     const photoList = document.getElementById('photo-list');
     const albumTitle = document.getElementById('photo-heading'); // Correct ID
@@ -19,3 +22,10 @@ import { loadImages } from './imageLoader.js';
 
     console.log(`✅ Finished loading ${count} images`);
 })();
+
+if (isEditable()) {
+    console.log("Editing is enabled.");
+} else {
+    console.log("Editing is disabled.");
+}
+
