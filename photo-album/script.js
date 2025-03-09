@@ -1,4 +1,4 @@
-import { loadImages } from './imageLoader.js';
+import { loadImages, imagesData } from './imageLoader.js';
 import { isEditable, setEditable } from './config.js';
 
 // For future use: setting the editable flag based on some condition
@@ -29,3 +29,26 @@ if (isEditable()) {
     console.log("Editing is disabled.");
 }
 
+document.getElementById('save-button').addEventListener('click', () => {
+    saveChanges();
+});
+
+async function saveChanges() {
+    try {
+        const fileHandle = await window.showSaveFilePicker({
+            suggestedName: 'images.json',
+            types: [{
+                description: 'JSON Files',
+                accept: {'application/json': ['.json']}
+            }]
+        });
+
+        const writableStream = await fileHandle.createWritable();
+        await writableStream.write(JSON.stringify(imagesData, null, 2));
+        await writableStream.close();
+
+        console.log("Changes saved!");
+    } catch (error) {
+        console.error("Error saving changes:", error);
+    }
+}
