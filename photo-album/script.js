@@ -1,4 +1,4 @@
-import { loadImages, imagesData } from './imageLoader.js';
+import { loadImages, getImagesData, sortImagesData } from './imageLoader.js';
 import { isEditable, setEditable } from './config.js';
 
 // For future use: setting the editable flag based on some condition
@@ -6,7 +6,6 @@ import { isEditable, setEditable } from './config.js';
 (async () => {
     const photoList = document.getElementById('photo-list');
     const albumTitle = document.getElementById('photo-heading'); // Correct ID
-    // albumTitle.textContent = "Loading...";
     
     // Append "LOADING..." to the title
     albumTitle.textContent += " (LOADING...)";
@@ -35,6 +34,8 @@ document.getElementById('save-button').addEventListener('click', () => {
 
 async function saveChanges() {
     try {
+        sortImagesData(); // Sort images data by sortOrder before saving
+
         const fileHandle = await window.showSaveFilePicker({
             suggestedName: 'images.json',
             types: [{

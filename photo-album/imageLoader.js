@@ -1,7 +1,7 @@
 // filepath: /e:/GitHub/static-site/photo-album/imageLoader.js
 import { isEditable } from './config.js';
 
-export let imagesData = [];
+let imagesData = [];
 
 export async function* loadImages() {
     try {
@@ -13,6 +13,7 @@ export async function* loadImages() {
 
         const images = await response.json();
         imagesData = images; // Store the images data
+        sortImagesData(); // Sort images data by sortOrder
 
         for (const image of images) {
             // Commented-out delay for now, but can be re-enabled if needed
@@ -50,4 +51,12 @@ function updateImageTitle(filePath, newTitle) {
         image.title = newTitle;
     }
     console.log("Updated images data: ", imagesData);
+}
+
+export function getImagesData() {
+    return imagesData;
+}
+
+export function sortImagesData() {
+    imagesData.sort((a, b) => a.sortOrder - b.sortOrder);
 }
