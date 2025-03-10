@@ -45,7 +45,7 @@ async function saveChanges() {
         });
 
         const writableStream = await fileHandle.createWritable();
-        await writableStream.write(JSON.stringify(imagesData, null, 2));
+        await writableStream.write(JSON.stringify(getImagesData(), null, 2));
         await writableStream.close();
 
         console.log("Changes saved!");
