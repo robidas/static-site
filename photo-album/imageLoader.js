@@ -15,7 +15,7 @@ export async function* loadImages() {
         imagesData = images; // Store the images data
         sortImagesData(); // Sort images data by sortOrder
 
-        for (const image of images) {
+        for (const image of imagesData) {
             // Commented-out delay for now, but can be re-enabled if needed
             // await new Promise(resolve => setTimeout(resolve, 100));
             
@@ -27,6 +27,10 @@ export async function* loadImages() {
                         <p class="photo-title" contenteditable="${isEditable()}">${image.title}</p>
                         <img src="${image.filePath}" alt="${image.title}">
                         <p class="photo-description">${image.description}</p>
+                        <div class="photo-controls">
+                            <button class="up-button">Up</button>
+                            <button class="down-button">Down</button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -37,6 +41,15 @@ export async function* loadImages() {
                     updateImageTitle(image.filePath, event.target.innerText);
                 });
             }
+
+            // Add event listeners for up and down buttons
+            li.querySelector('.up-button').addEventListener('click', () => {
+                console.log(`up ${image.filePath}`);
+            });
+
+            li.querySelector('.down-button').addEventListener('click', () => {
+                console.log(`down ${image.filePath}`);
+            });
 
             yield li;
         }

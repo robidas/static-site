@@ -36,6 +36,11 @@ async function saveChanges() {
     try {
         sortImagesData(); // Sort images data by sortOrder before saving
 
+        if (!window.showSaveFilePicker) {
+            console.log("Cannot save images data: ", JSON.stringify(getImagesData(), null, 2));
+            throw new Error("The File System Access API is not available. Please use HTTPS to enable this feature.");
+        }
+
         const fileHandle = await window.showSaveFilePicker({
             suggestedName: 'images.json',
             types: [{
@@ -50,6 +55,10 @@ async function saveChanges() {
 
         console.log("Changes saved!");
     } catch (error) {
-        console.error("Error saving changes:", error);
+        if (error.message === "The File System Access API is not available. Please use HTTPS to enable this feature.") {
+            alert(error.message);
+        } else {
+            console.error("Error saving changes:", error);
+        }
     }
 }
